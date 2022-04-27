@@ -1,0 +1,23 @@
+version: '3'
+services:
+  db:
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo-storage:/data/db
+  api:
+    depends_on:
+      - db
+    build: .
+    ports:
+      - 2999:2999
+    environment:
+      - PORT=${PORT}
+      - MONGODB_URI=${MONGODB_URI}
+      - JWT_SECRET=${JWT_SECRET}
+    volumes:
+      - /app/node_modules
+      - ./:/app
+volumes:
+  mongo-storage:
