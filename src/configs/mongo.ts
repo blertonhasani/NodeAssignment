@@ -1,6 +1,5 @@
 import * as mongoose from 'mongoose';
-
-const logger = require('../helpers/logging');
+import { logger } from '../helpers/logging';
 
 export class Mongo {
   static connection: mongoose.Mongoose;

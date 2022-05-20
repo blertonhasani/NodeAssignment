@@ -1,7 +1,10 @@
-require('dotenv').config();
-const logger = require('./helpers/logging');
-const Mongo = require('./configs/mongo');
-const app = require('./app');
+/* eslint-disable import/first */
+import * as dotenv from 'dotenv';
+
+dotenv.config();
+import { logger } from './helpers/logging';
+import { Mongo } from './configs/mongo';
+import app from './app';
 
 async function main() {
   await Mongo.connect(process.env.MONGODB_URI);

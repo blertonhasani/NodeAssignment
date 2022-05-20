@@ -1,4 +1,4 @@
-const winston = require('winston');
+import * as winston from 'winston';
 
 const logger = winston.createLogger({
   format: winston.format.combine(winston.format.splat(), winston.format.errors({ stack: true }), winston.format.simple()),
