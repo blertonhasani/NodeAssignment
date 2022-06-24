@@ -25,7 +25,6 @@ const UserSchema: Schema = new Schema({
   },
 });
 
-// eslint-disable-next-line consistent-return
 UserSchema.pre<IUser>('save', async function (next) {
   try {
     if (!this.isModified('password')) return next();

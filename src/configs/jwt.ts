@@ -1,7 +1,3 @@
-import * as dotenv from 'dotenv';
-
-dotenv.config();
-
 const secretToken = process.env.JWT_SECRET;
 
 const JWTConfigs = {

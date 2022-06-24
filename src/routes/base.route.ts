@@ -9,7 +9,7 @@ const baseRouter = Router();
 baseRouter.route('/signup').post(validate(BaseValidator.signup), BaseController.signup);
 baseRouter.route('/login').post(validate(BaseValidator.login), BaseController.login);
 baseRouter.route('/me').get(authenticateToken, BaseController.me);
-baseRouter.route('/me/update-password').put(authenticateToken, validate(BaseValidator.updatePassword), BaseController.updatePassword);
+baseRouter.route('/me/update-password/:userId').put(authenticateToken, validate(BaseValidator.updatePassword), BaseController.updatePassword);
 baseRouter.route('/most-liked').get(BaseController.mostLiked);
 
 export default baseRouter;

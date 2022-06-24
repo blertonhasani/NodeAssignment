@@ -24,10 +24,8 @@ export class UserService {
     return new BaseResponse({ statusCode: httpStatusCode.CREATED, message: responseMessages.SIGNUP });
   }
 
-  public static async checkIfExists(name: string): Promise<boolean> {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    return User.exists({ username: name });
+  public static checkIfExists(name: string): boolean {
+     return User.exists({ username: name }) ? true : false
   }
 
   public static async login(username: string, password: string): Promise<BaseResponse> {

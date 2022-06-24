@@ -6,13 +6,13 @@ import JWTConfigs from '../configs/jwt';
 import { BaseResponse, ErrorResponse } from '../responses/base.response';
 import responseMessages from '../responses/message.response';
 
-export default function authenticateToken(req: Request, res: Response, next: NextFunction) {
+export default function authenticateToken(req: Request, res: Response, next: NextFunction): void {
   const authHeader = req.headers.authorization;
   const token = authHeader && authHeader.startsWith('Bearer') && authHeader.split(' ')[1];
 
   if (token == null) {
-
-    return res
+    return 
+    res
       .status(httpStatusCode.UNAUTHORIZED)
       .send(new BaseResponse({ statusCode: httpStatusCode.UNAUTHORIZED, error: new ErrorResponse(responseMessages.UNAUTHORIZED) }))
       .end();
@@ -24,9 +24,8 @@ export default function authenticateToken(req: Request, res: Response, next: Nex
       return;
     }
 
-
-    req.token = token;
-    req.userId = user.id;
+    req.body.token = token;
+    req.body.userId = user.id;
     next();
   });
 }

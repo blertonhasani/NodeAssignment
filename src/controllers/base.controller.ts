@@ -16,7 +16,7 @@ export default class BaseController {
 
   public static async updatePassword(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const { userId } = req.body
+      const { userId } = req.params
       const changePassword = new ChangePassword(req.body);
       const result = await UserService.updatePassword(userId.toString(), changePassword);
       res.status(result.statusCode).send(result);

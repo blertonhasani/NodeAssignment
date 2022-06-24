@@ -11,6 +11,7 @@ function errorHandler(err: any, req: Request, res: Response, next: NextFunction)
     message: err.message || httpStatusCode.INTERNAL_SERVER,
     stack: err.stack,
   };
+
   if (err.name === 'ValidationError') {
     const errors = [];
     if (err.details && err.details.body) {
@@ -22,14 +23,12 @@ function errorHandler(err: any, req: Request, res: Response, next: NextFunction)
     response = {
       code: err.statusCode,
       message: err.error,
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      errors,
+      stack: errors,
     };
   }
 
   logger.error(err);
-  // return res
+  // return req
   //   .status(response.code || httpStatusCode.INTERNAL_SERVER)
   //   .json(response)
   //   .end();
